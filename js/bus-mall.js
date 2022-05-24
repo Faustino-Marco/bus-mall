@@ -9,9 +9,9 @@ let allProductsArr = [];
 
 let productContainer = document.getElementById('section');
 let resultButton = document.querySelector('section + div');
-let image1 = document.querySelector('section img:first-child'); //****************** */
-let image2 = document.querySelector('section img:nth-child(2)'); //**************** */
-let image3 = document.querySelector('img-3?') // ***************************************** ??????????
+let image1 = document.getElementById('imgOne'); //****************** */
+let image2 = document.getElementById('imgTwo'); //**************** */
+let image3 = document.getElementById('imgThree'); // ***************************************** ??????????
 
 let clicks = 0;
 let maxClicksAllowed = 10;
@@ -27,10 +27,25 @@ function Product(name, fileExtension = 'jpg') {
   Product.allProductsArr.push(this);
 }
 
-Product.allProductsArr = [];
+// Product.allProductsArr = [];
 
 // **************INSTANTIATION******************
 new Product('name', 'png')
+new Product();
+new Product();
+new Product();
+new Product();
+new Product();
+new Product();
+new Product();
+new Product();
+new Product();
+new Product();
+new Product();
+new Product();
+new Product();new Product();
+new Product();
+
 //************HELPER FUNCTIONS****************
 
 // RANDOM # GENERATOR
@@ -66,6 +81,15 @@ function renderProducts() {
 }
 
 renderProducts(); 
+
+// ************CHART RENDERING******************
+// ...to replace resuts li rendering function
+function renderChart() {
+  // array names = []
+  // array votes = []
+
+  //loop push names & votes into above arrays eg: allgoats[i]
+}
 //************EVENT HANDLERS******************
 
 function handleClick(event) {
