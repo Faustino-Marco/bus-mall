@@ -6,27 +6,50 @@
   <meta charset="UTF-8">
   <title>Bus Mall</title>
   <link rel="stylesheet" href="styles/reset.css">
-  <link rel="stylesheet" href="styles/goat.css">
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
-  <main>
-    <img src="LOOOGOOOOO" id="siteLogo" alt="Bus Mall">
-
+  <header>
     <h1>Bus Mall</h1>
+    <nav>
+      <ul>
+        <li>
+          <a href="#">Link</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <!-- <img src="#" id="siteLogo" alt="Bus Mall"> -->
+    
 
-    <section>
-      <img id="imgOne">
-      <img id="imgTwo">
-      <img id="imgThree">
+    <section id="products">
+      <ul>
+        <li>
+          <img id="imgOne" src="" alt="">
+        </li>
+        <li>
+          <img id="imgTwo" src="" alt="">
+        </li>
+        <li>
+          <img id="imgThree" src="" alt="">
+        </li>
+      </ul>
     </section>
 
-    <div>View Results</div>
+    <div>
+      <h2>
+        View Results
+      </h2>
+    </div>
 
     <ul></ul>
-
+    <canvas id="myChart" width="400" height="400"></canvas>
+    <script>"https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"</script>
+    <script src="js/bus-mall.js"></script>
   </main>
-  <script src="js/bus-mall.js"></script>
+  <footer></footer>
 </body>
 
 </html>
