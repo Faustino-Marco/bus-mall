@@ -1,7 +1,5 @@
 'use strict';
 
-console.log('live long and prosper');
-
 //****************************************
 //          GLOBAL VARIABLES
 // ****************************************
@@ -19,7 +17,8 @@ let ctx = document.getElementById('myChart').getContext('2d');
 // ***********Click Variables****************
 
 let clicks = 0;
-let maxClicksAllowed = 10;
+let maxClicksAllowed = 25;
+let uniqueImageCount = 6;
 // *******************************************
 //             CONSTRUCTOR
 //********************************************
@@ -41,11 +40,9 @@ function Product(name, fileExtension = 'jpg') {
 // *********************************************
 
 let retrievedProducts = localStorage.getItem('products');
-console.log('Retrieved Products', retrievedProducts)
 
 // LOCAL STORAGE PT 4
 let parsedProducts = JSON.parse(retrievedProducts);
-console.log(parsedProducts);
 
 // EASY WAY
 if (retrievedProducts) {
@@ -71,11 +68,7 @@ if (retrievedProducts) {
   new Product('unicorn');
   new Product('water-can');
   new Product('wine-glass');
-};
-
-// console.log(allProductsArr);
-
-// console.log('1st Products >>', allProductsArr);
+}
 
 //****************************************
 //            HELPER FUNCTIONS
@@ -95,18 +88,17 @@ function renderProducts() {
 
   // MANAGE DUPLICATES & TRIPLE COPIES
   // 2 ROUNDS: NO LONGER USING POP(); NOW USING SHIFT();
-  while (indexArr.length < 3) {
+  while (indexArr.length < uniqueImageCount) {
     let randoNum = randNum();
 
     if (!indexArr.includes(randoNum)) {
       indexArr.push(randoNum);
     }
   }
-  console.log(indexArr);
 
-  let imgOneIndex = indexArr[0];
-  let imgTwoIndex = indexArr[1];
-  let imgThreeIndex = indexArr[2];
+  let imgOneIndex = indexArr.shift();
+  let imgTwoIndex = indexArr.shift();
+  let imgThreeIndex = indexArr.shift();
 
   image1.src = allProductsArr[imgOneIndex].photo;
   image1.alt = allProductsArr[imgOneIndex].name;
@@ -120,9 +112,7 @@ function renderProducts() {
 
   // INCREMENT VIEWS/CLICKS PROPERTIES
 
-  while (indexArr.length > 0) {
-    indexArr.pop();
-  }
+
 }
 
 renderProducts();
@@ -142,34 +132,6 @@ function renderChart() {
     productVotes.push(allProductsArr[i].votes);
     productViews.push(allProductsArr[i].views);
   }
-
-  // let myChartViews = {
-  //   type: 'bar',
-  //   data: {
-  //     labels: productName,
-  //     datasets: [{
-  //       label: '# of Views',
-  //       data: productViews,
-  //       backgroundColor: [
-  //         'rgba(255, 99, 132, 0.2)',
-  //         'rgba(54, 162, 235, 0.2)',
-  //         'rgba(255, 206, 86, 0.2)',
-  //         'rgba(75, 192, 192, 0.2)',
-  //         'rgba(153, 102, 255, 0.2)',
-  //         'rgba(255, 159, 64, 0.2)'
-  //       ],
-  //       borderColor: [
-  //         'rgba(255, 99, 132, 1)',
-  //         'rgba(54, 162, 235, 1)',
-  //         'rgba(255, 206, 86, 1)',
-  //         'rgba(75, 192, 192, 1)',
-  //         'rgba(153, 102, 255, 1)',
-  //         'rgba(255, 159, 64, 1)'
-  //       ],
-  //       borderWidth: 1
-  //     }]
-  //   },
-  // };
 
   new Chart(ctx, {
     type: 'bar',
@@ -227,7 +189,6 @@ function renderChart() {
 
 function handleClick(event) {
   maxClicksAllowed--;
-  console.log(event.target);
   
   let imgClicked = event.target.alt;
   
@@ -238,8 +199,7 @@ function handleClick(event) {
     }
   }
   renderProducts();
-  console.log(maxClicksAllowed);
-  console.log(allProductsArr);
+
   if (maxClicksAllowed === 0) {
     handleShowResults();
   }
@@ -250,18 +210,12 @@ function handleShowResults() {
     renderChart();
 
 }
-// handleShowResults();
+
 //****************************************
 //            EVENT LISTENERS
 //**************************************** 
 
 productContainer.addEventListener('click', handleClick);
-
-// showResults
-
-// if maxVotes ===0
-// k
-
 
 /* **********************************************
                   LOCAL STORAGE
@@ -269,7 +223,6 @@ productContainer.addEventListener('click', handleClick);
 
 // STEP 1: STRINGIFY DATA
 let stringifiedProducts = JSON.stringify(allProductsArr);
-// console.log(stringifiedProducts);
 
 // STEP 2: ADD TO LOCAL STORAGE
 localStorage.setItem('products', stringifiedProducts);
