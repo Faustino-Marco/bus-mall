@@ -179,10 +179,12 @@ function renderChart() {
 //******************************************** */
 
 function handleClick(event) {
+  if (event.target.tagName !== 'IMG') return;
+
   maxClicksAllowed--;
-  
+
   let imgClicked = event.target.alt;
-  
+
   for (let i = 0; i < allProductsArr.length; i++) {
     if (imgClicked === allProductsArr[i].name) {
       allProductsArr[i].votes++;
