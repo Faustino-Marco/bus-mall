@@ -114,18 +114,21 @@ renderProducts();
 // *********************************************
 //              CHART RENDERING
 // *********************************************
-// ...to replace resuts li rendering function
-function renderChart() {
 
-  let productName = [];
-  let productVotes = [];
-  let productViews = [];
-
-  for (let i = 0; i < allProductsArr.length; i++) {
-    productName.push(allProductsArr[i].name);
-    productVotes.push(allProductsArr[i].votes);
-    productViews.push(allProductsArr[i].views);
+function makeChartColors(count, alpha) {
+  let colors = [];
+  for (let i = 0; i < count; i++) {
+    let hue = Math.round((i / count) * 360);
+    colors.push(`hsla(${hue}, 70%, 55%, ${alpha})`);
   }
+  return colors;
+}
+
+function renderChart() {
+  let productName = allProductsArr.map(p => p.name);
+  let productVotes = allProductsArr.map(p => p.votes);
+  let productViews = allProductsArr.map(p => p.views);
+  let count = allProductsArr.length;
 
   new Chart(ctx, {
     type: 'bar',
@@ -134,42 +137,14 @@ function renderChart() {
       datasets: [{
         label: '# of Votes',
         data: productVotes,
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
+        backgroundColor: makeChartColors(count, 0.7),
+        borderColor: makeChartColors(count, 1),
         borderWidth: 1
       }, {
         label: '# of Views',
         data: productViews,
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
+        backgroundColor: makeChartColors(count, 0.3),
+        borderColor: makeChartColors(count, 0.8),
         borderWidth: 1
       }]
     },
