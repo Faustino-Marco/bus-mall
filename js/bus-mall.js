@@ -1,14 +1,8 @@
 'use strict';
 
-//****************************************
-//          GLOBAL VARIABLES
-// ****************************************
-
-let voteCount = 0;
 let allProductsArr = [];
 
 let productContainer = document.getElementById('products');
-// let resultButton = document.querySelector('section + div'); ADDDD BUTTTONNNNNNN
 let image1 = document.getElementById('imgOne');
 let image2 = document.getElementById('imgTwo');
 let image3 = document.getElementById('imgThree');
@@ -31,9 +25,6 @@ function Product(name, fileExtension = 'jpg') {
 
   allProductsArr.push(this);
 }
-
-// Product.allProductsArr = [];
-
 
 // *********************************************
 //     INSTANTIATION & LOCAL STORAGE PT 2
