@@ -178,6 +178,10 @@ function renderChart() {
 //            EVENT HANDLERS
 //******************************************** */
 
+function saveProducts() {
+  localStorage.setItem('products', JSON.stringify(allProductsArr));
+}
+
 function handleClick(event) {
   if (event.target.tagName !== 'IMG') return;
 
@@ -191,6 +195,7 @@ function handleClick(event) {
       allProductsArr[i].views++;
     }
   }
+  saveProducts();
   renderProducts();
 
   if (maxClicksAllowed === 0) {
@@ -210,13 +215,5 @@ function handleShowResults() {
 
 productContainer.addEventListener('click', handleClick);
 
-/* **********************************************
-                  LOCAL STORAGE
-********************************************** */
-
-// STEP 1: STRINGIFY DATA
-let stringifiedProducts = JSON.stringify(allProductsArr);
-
-// STEP 2: ADD TO LOCAL STORAGE
-localStorage.setItem('products', stringifiedProducts);
+saveProducts();
 
