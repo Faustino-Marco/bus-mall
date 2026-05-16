@@ -77,6 +77,15 @@ h2 {
   width: 100%;
 }
 
+#instructions {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--color-dark);
+  background-color: var(--color-yellow);
+  padding: 12px 20px;
+  font-weight: bold;
+}
+
 button {
   margin-top: 15px;
   background-color: black;

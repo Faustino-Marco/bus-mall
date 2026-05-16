@@ -6,8 +6,11 @@ let productContainer = document.getElementById('products');
 let image1 = document.getElementById('imgOne');
 let image2 = document.getElementById('imgTwo');
 let image3 = document.getElementById('imgThree');
+let instructions = document.getElementById('instructions');
+let votesRemaining = document.getElementById('votes-remaining');
+let chartCanvas = document.getElementById('myChart');
 
-let ctx = document.getElementById('myChart').getContext('2d');
+let ctx = chartCanvas.getContext('2d');
 // ***********Click Variables****************
 
 let clicks = 0;
@@ -186,6 +189,7 @@ function handleClick(event) {
   if (event.target.tagName !== 'IMG') return;
 
   maxClicksAllowed--;
+  votesRemaining.textContent = maxClicksAllowed;
 
   let imgClicked = event.target.alt;
 
@@ -204,9 +208,10 @@ function handleClick(event) {
 }
 
 function handleShowResults() {
-    productContainer.removeEventListener('click', handleClick);
-    renderChart();
-
+  productContainer.removeEventListener('click', handleClick);
+  instructions.hidden = true;
+  chartCanvas.hidden = false;
+  renderChart();
 }
 
 //****************************************
