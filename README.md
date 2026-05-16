@@ -28,3 +28,4 @@
 - ✅ **Product images properly sized** (`revamp/mod-11-image-size`) — increased image containers from 100×100 px to 220 px tall flexible columns with `object-fit: contain`; added vertical padding to the product row.
 - ✅ **Add user instructions with live vote counter** (`revamp/mod-12-instructions`) — added a yellow instruction banner below the image row showing remaining votes; banner hides and chart reveals when voting ends.
 - ✅ **Fix Chart.js colors for all 18 products** (`revamp/mod-13-chart-colors`) — replaced 6-entry hardcoded color arrays with `makeChartColors()` that generates evenly-spaced HSL hues dynamically, giving each product a distinct color.
+- ✅ **Refactor `renderProducts` to use a loop** (`revamp/mod-14-render-refactor`) — replaced 3 repeated src/alt/views blocks and 3 separate image globals with an `imageEls` array and a `forEach` loop; also removed unused `clicks` variable.

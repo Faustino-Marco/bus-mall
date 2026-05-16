@@ -3,17 +3,17 @@
 let allProductsArr = [];
 
 let productContainer = document.getElementById('products');
-let image1 = document.getElementById('imgOne');
-let image2 = document.getElementById('imgTwo');
-let image3 = document.getElementById('imgThree');
+let imageEls = [
+  document.getElementById('imgOne'),
+  document.getElementById('imgTwo'),
+  document.getElementById('imgThree'),
+];
 let instructions = document.getElementById('instructions');
 let votesRemaining = document.getElementById('votes-remaining');
 let chartCanvas = document.getElementById('myChart');
 
 let ctx = chartCanvas.getContext('2d');
-// ***********Click Variables****************
 
-let clicks = 0;
 let maxClicksAllowed = 25;
 let uniqueImageCount = 6;
 // *******************************************
@@ -79,34 +79,19 @@ let indexArr = [];
 
 
 function renderProducts() {
-
-  // MANAGE DUPLICATES & TRIPLE COPIES
-  // 2 ROUNDS: NO LONGER USING POP(); NOW USING SHIFT();
   while (indexArr.length < uniqueImageCount) {
     let randoNum = randNum();
-
     if (!indexArr.includes(randoNum)) {
       indexArr.push(randoNum);
     }
   }
 
-  let imgOneIndex = indexArr.shift();
-  let imgTwoIndex = indexArr.shift();
-  let imgThreeIndex = indexArr.shift();
-
-  image1.src = allProductsArr[imgOneIndex].photo;
-  image1.alt = allProductsArr[imgOneIndex].name;
-  allProductsArr[imgOneIndex].views++;
-  image2.src = allProductsArr[imgTwoIndex].photo;
-  image2.alt = allProductsArr[imgTwoIndex].name;
-  allProductsArr[imgTwoIndex].views++;
-  image3.src = allProductsArr[imgThreeIndex].photo;
-  image3.alt = allProductsArr[imgThreeIndex].name;
-  allProductsArr[imgThreeIndex].views++;
-
-  // INCREMENT VIEWS/CLICKS PROPERTIES
-
-
+  imageEls.forEach(function(imgEl) {
+    let idx = indexArr.shift();
+    imgEl.src = allProductsArr[idx].photo;
+    imgEl.alt = allProductsArr[idx].name;
+    allProductsArr[idx].views++;
+  });
 }
 
 renderProducts();
