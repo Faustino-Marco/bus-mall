@@ -59,13 +59,32 @@ section ul li {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.product-btn {
+  background: none;
+  border: 2px solid transparent;
+  padding: 0;
+  width: 100%;
+  height: 100%;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 200ms;
+}
+
+.product-btn:hover,
+.product-btn:focus-visible {
+  border-color: var(--color-yellow);
+  outline: none;
 }
 
 section ul li img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  pointer-events: none;
 }
 
 h2 {

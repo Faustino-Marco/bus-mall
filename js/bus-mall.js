@@ -133,12 +133,13 @@ function saveProducts() {
 }
 
 function handleClick(event) {
-  if (event.target.tagName !== 'IMG') return;
+  let btn = event.target.closest('.product-btn');
+  if (!btn) return;
 
   maxClicksAllowed--;
   votesRemaining.textContent = maxClicksAllowed;
 
-  let imgClicked = event.target.alt;
+  let imgClicked = btn.querySelector('img').alt;
 
   for (let i = 0; i < allProductsArr.length; i++) {
     if (imgClicked === allProductsArr[i].name) {
