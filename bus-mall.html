@@ -1,58 +1,34 @@
 <!DOCTYPE html>
-
 <html lang="en">
-  
-  <head>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+<head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BusMall — vote on quirky bus-ride products and see what fellow passengers prefer.">
   <title>Bus Mall</title>
   <link rel="stylesheet" href="styles/reset.css">
   <link rel="stylesheet" href="styles/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js" defer></script>
 </head>
-
 <body>
   <header>
     <h1>Bus Mall</h1>
-    <nav>
-      <ul>
-        <li>
-          <!-- <a href="#">Link</a> -->
-        </li>
-      </ul>
-    </nav>
   </header>
   <main>
-    <!-- <img src="#" id="siteLogo" alt="Bus Mall"> -->
-    
-
     <section id="products">
       <ul>
-        <li>
-          <img id="imgOne" src="" alt="">
-        </li>
-        <li>
-          <img id="imgTwo" src="" alt="">
-        </li>
-        <li>
-          <img id="imgThree" src="" alt="">
-        </li>
+        <li><img id="imgOne" src="" alt=""></li>
+        <li><img id="imgTwo" src="" alt=""></li>
+        <li><img id="imgThree" src="" alt=""></li>
       </ul>
     </section>
 
-    <div>
-      <h2>
-        <!-- View Results -->
-      </h2>
-    </div>
-
-    <ul></ul>
-
-    <canvas id="myChart" width="400" height="400"></canvas>
-
-
-    <script src="js/bus-mall.js"></script>
+    <canvas id="myChart" width="400" height="400"
+      aria-label="Bar chart showing votes and views per product" role="img"></canvas>
   </main>
-  <footer></footer>
-</body>
+  <footer>
+    <p>&copy; 2024 Bus Mall</p>
+  </footer>
 
+  <script src="js/bus-mall.js" defer></script>
+</body>
 </html>
