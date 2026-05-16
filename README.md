@@ -39,5 +39,6 @@
 
 ## Version History
 
+- Version 2.1.0: Visual redesign — product cards, responsive chart container, header tagline, full-width layout fix (5/17/26)
 - Version 2.0.0: Full revamp — 16 improvements across HTML, CSS, and JS including bug fixes, accessibility, and modernisation (5/17/26)
 - Version 1.0.0: Initial release

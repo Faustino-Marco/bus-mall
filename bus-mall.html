@@ -12,6 +12,7 @@
 <body>
   <header>
     <h1>Bus Mall</h1>
+    <p>Which product would you buy on your commute?</p>
   </header>
   <main>
     <section id="products">
@@ -22,10 +23,13 @@
       </ul>
     </section>
 
-    <p id="instructions">Click your favorite product to vote! <span id="votes-remaining">25</span> votes remaining.</p>
+    <p id="instructions">Click your favorite to vote &mdash; <span id="votes-remaining">25</span> votes remaining.</p>
 
-    <canvas id="myChart" width="400" height="400"
-      aria-label="Bar chart showing votes and views per product" role="img" hidden></canvas>
+    <div id="chart-container" hidden>
+      <h2>Results: Votes &amp; Views</h2>
+      <canvas id="myChart"
+        aria-label="Bar chart showing votes and views per product" role="img"></canvas>
+    </div>
   </main>
   <footer>
     <p>&copy; 2024 Bus Mall</p>
