@@ -10,9 +10,9 @@ let imageEls = [
 ];
 let instructions = document.getElementById('instructions');
 let votesRemaining = document.getElementById('votes-remaining');
-let chartCanvas = document.getElementById('myChart');
+let chartContainer = document.getElementById('chart-container');
 
-let ctx = chartCanvas.getContext('2d');
+let ctx = document.getElementById('myChart').getContext('2d');
 
 let maxClicksAllowed = 25;
 let uniqueImageCount = 6;
@@ -120,6 +120,10 @@ function renderChart() {
         borderWidth: 1
       }]
     },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+    },
   });
 }
 
@@ -158,7 +162,7 @@ function handleClick(event) {
 function handleShowResults() {
   productContainer.removeEventListener('click', handleClick);
   instructions.hidden = true;
-  chartCanvas.hidden = false;
+  chartContainer.hidden = false;
   renderChart();
 }
 

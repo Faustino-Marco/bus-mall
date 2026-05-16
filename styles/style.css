@@ -4,125 +4,161 @@
   --color-coral: #e76f51;
   --color-yellow: #e9c46a;
   --color-orange: #f4a261;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --radius: 10px;
 }
+
+/* ── RESET HELPERS ─────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* ── PAGE SHELL ────────────────────────────────── */
 
 body {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   background-color: var(--color-teal);
-  width: 90%;
-  margin: auto;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── HEADER ────────────────────────────────────── */
+
+header {
+  background-color: var(--color-dark);
+  padding: 28px 24px 24px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
   color: var(--color-yellow);
-  text-align: center;
-  font-size: 45px;
+  font-size: 2.8rem;
+  letter-spacing: 0.05em;
+  margin: 0;
 }
 
-header {
-  background-color: var(--color-dark);
-  height: 100px;
-  margin-bottom: 30px;
+header p {
+  color: var(--color-teal);
+  margin: 6px 0 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-a {
-  text-decoration: none;
-  color: var(--color-yellow);
-}
+/* ── MAIN CONTENT ──────────────────────────────── */
 
 main {
-  width: 90%;
-  margin: auto;
-}
-
-section {
-  width: 100%;
-  margin: auto;
-}
-
-/* PRODUCT IMAGES */
-
-section ul {
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-  align-items: center;
-  background-color: var(--color-coral);
-  padding: 20px 0;
-  gap: 16px;
-}
-
-section ul li {
   flex: 1;
-  max-width: 280px;
-  height: 220px;
+  max-width: 960px;
+  width: 100%;
+  margin: 40px auto;
+  padding: 0 24px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── PRODUCT CARDS ─────────────────────────────── */
+
+#products ul {
+  display: flex;
   justify-content: center;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#products ul li {
+  flex: 1;
+  max-width: 260px;
 }
 
 .product-btn {
-  background: none;
-  border: 2px solid transparent;
-  padding: 0;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1;
+  background: white;
+  border: 3px solid transparent;
+  border-radius: var(--radius);
+  padding: 16px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color 200ms;
+  box-shadow: var(--shadow);
+  transition: border-color 180ms ease, transform 120ms ease, box-shadow 180ms ease;
 }
 
-.product-btn:hover,
+.product-btn:hover {
+  border-color: var(--color-orange);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
 .product-btn:focus-visible {
   border-color: var(--color-yellow);
-  outline: none;
+  outline: 3px solid var(--color-yellow);
+  outline-offset: 2px;
 }
 
-section ul li img {
+.product-btn img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   pointer-events: none;
 }
 
-h2 {
-  font-size: 30px;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  color: var(--color-dark);
-  background-color: var(--color-coral);
-  width: 100%;
-}
+/* ── INSTRUCTIONS BANNER ───────────────────────── */
 
 #instructions {
-  text-align: center;
-  font-size: 1.2rem;
-  color: var(--color-dark);
-  background-color: var(--color-yellow);
-  padding: 12px 20px;
-  font-weight: bold;
-}
-
-button {
-  margin-top: 15px;
-  background-color: black;
-  color: white;
-  transition: 350ms;
-}
-
-button:hover {
-  background-color: var(--color-orange);
-}
-
-/* FOOTER */
-
-footer {
-  height: 150px;
   background-color: var(--color-dark);
   color: var(--color-yellow);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+  padding: 14px 20px;
+  border-radius: var(--radius);
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  box-shadow: var(--shadow);
+}
+
+/* ── CHART ─────────────────────────────────────── */
+
+#chart-container {
+  background: white;
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+#chart-container h2 {
+  color: var(--color-dark);
+  font-size: 1.3rem;
+  margin: 0 0 16px;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+#myChart {
+  width: 100% !important;
+  height: 380px !important;
+}
+
+/* ── FOOTER ────────────────────────────────────── */
+
+footer {
+  background-color: var(--color-dark);
+  color: var(--color-yellow);
+  text-align: center;
+  padding: 20px 24px;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+a {
+  color: var(--color-yellow);
+  text-decoration: none;
 }
