@@ -29,3 +29,7 @@
 - ✅ **Add user instructions with live vote counter** (`revamp/mod-12-instructions`) — added a yellow instruction banner below the image row showing remaining votes; banner hides and chart reveals when voting ends.
 - ✅ **Fix Chart.js colors for all 18 products** (`revamp/mod-13-chart-colors`) — replaced 6-entry hardcoded color arrays with `makeChartColors()` that generates evenly-spaced HSL hues dynamically, giving each product a distinct color.
 - ✅ **Refactor `renderProducts` to use a loop** (`revamp/mod-14-render-refactor`) — replaced 3 repeated src/alt/views blocks and 3 separate image globals with an `imageEls` array and a `forEach` loop; also removed unused `clicks` variable.
+
+### Deep Refactors
+
+- ✅ **Convert `Product` constructor to ES6 `class`** (`revamp/deep-15-es6-class`) — modernized from `function Product()` prototype pattern to `class Product { constructor() {} }`; also cleaned up the instantiation section comments and inlined the `JSON.parse` call.

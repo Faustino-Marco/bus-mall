@@ -16,34 +16,21 @@ let ctx = chartCanvas.getContext('2d');
 
 let maxClicksAllowed = 25;
 let uniqueImageCount = 6;
-// *******************************************
-//             CONSTRUCTOR
-//********************************************
-
-function Product(name, fileExtension = 'jpg') {
-  this.name = name;
-  this.views = 0;
-  this.votes = 0;
-  this.photo = `img/${name}.${fileExtension}`
-
-  allProductsArr.push(this);
+class Product {
+  constructor(name, fileExtension = 'jpg') {
+    this.name = name;
+    this.views = 0;
+    this.votes = 0;
+    this.photo = `img/${name}.${fileExtension}`;
+    allProductsArr.push(this);
+  }
 }
-
-// *********************************************
-//     INSTANTIATION & LOCAL STORAGE PT 2
-// *********************************************
 
 let retrievedProducts = localStorage.getItem('products');
 
-// LOCAL STORAGE PT 4
-let parsedProducts = JSON.parse(retrievedProducts);
-
-// EASY WAY
 if (retrievedProducts) {
-  allProductsArr = parsedProducts;
+  allProductsArr = JSON.parse(retrievedProducts);
 } else {
-
-
   new Product('bag');
   new Product('banana');
   new Product('boots');
