@@ -27,3 +27,4 @@
 - ✅ **CSS custom properties for color palette** (`revamp/mod-10-css-custom-props`) — extracted 5 colors into `:root` variables; removed dead commented-out blocks and orphaned nav/footer rules; fixed aggressive global `p { height: 300px }` that conflicted with footer text.
 - ✅ **Product images properly sized** (`revamp/mod-11-image-size`) — increased image containers from 100×100 px to 220 px tall flexible columns with `object-fit: contain`; added vertical padding to the product row.
 - ✅ **Add user instructions with live vote counter** (`revamp/mod-12-instructions`) — added a yellow instruction banner below the image row showing remaining votes; banner hides and chart reveals when voting ends.
+- ✅ **Fix Chart.js colors for all 18 products** (`revamp/mod-13-chart-colors`) — replaced 6-entry hardcoded color arrays with `makeChartColors()` that generates evenly-spaced HSL hues dynamically, giving each product a distinct color.
