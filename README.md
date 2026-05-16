@@ -24,3 +24,4 @@
 
 - ✅ **Fix `handleClick` non-image click guard** (`revamp/mod-8-click-guard`) — clicking the orange `<ul>` padding (not an image) previously decremented the vote counter without registering a vote; guard now returns early if `event.target` is not an `<img>`.
 - ✅ **Fix localStorage vote persistence** (`revamp/mod-9-localstorage-fix`) — votes were only saved to localStorage at page load; now saved after every click via a `saveProducts()` helper, so vote data survives a refresh.
+- ✅ **CSS custom properties for color palette** (`revamp/mod-10-css-custom-props`) — extracted 5 colors into `:root` variables; removed dead commented-out blocks and orphaned nav/footer rules; fixed aggressive global `p { height: 300px }` that conflicted with footer text.
