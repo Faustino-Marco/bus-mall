@@ -18,3 +18,4 @@
 
 - ✅ **Remove dead HTML clutter + add meta tags + defer scripts + aria-label** (`revamp/qw-1-5-6-7-html-cleanup`) — removed empty nav/ul/footer/div ghosts; added viewport & description meta; deferred Chart.js and bus-mall.js; added aria-label to canvas; moved script to end of body.
 - ✅ **Remove dead JS variables** (`revamp/qw-2-dead-js-vars`) — removed unused `voteCount`, commented-out `resultButton`, and orphaned `Product.allProductsArr` comment.
+- ✅ **CSS fixes: remove invalid `text-justify`, add `cursor: pointer`** (`revamp/qw-3-4-css-fixes`) — dropped the invalid `text-justify: center` declaration; added `cursor: pointer` to image list items so users know they're clickable.
