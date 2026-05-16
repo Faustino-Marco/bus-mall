@@ -34,3 +34,10 @@
 
 - ✅ **Convert `Product` constructor to ES6 `class`** (`revamp/deep-15-es6-class`) — modernized from `function Product()` prototype pattern to `class Product { constructor() {} }`; also cleaned up the instantiation section comments and inlined the `JSON.parse` call.
 - ✅ **Keyboard accessibility for voting** (`revamp/deep-16-keyboard-a11y`) — wrapped each product `<img>` in a `<button class="product-btn">`; button gets a yellow focus ring on `:focus-visible`; `handleClick` uses `event.target.closest('.product-btn')` so Enter/Space keyboard activation works correctly.
+
+---
+
+## Version History
+
+- Version 2.0.0: Full revamp — 16 improvements across HTML, CSS, and JS including bug fixes, accessibility, and modernisation (5/17/26)
+- Version 1.0.0: Initial release
