@@ -39,6 +39,7 @@
 
 - ✅ **Viewport-filling product cards** (`revamp/voting-ui-fix`) — replaced fixed-size image containers with a flex-fill chain (`body → main → #products → ul → li → .product-btn → img`) so cards grow to use all available vertical space; fixed `[hidden]` specificity bug where `#vote-ui { display: flex }` overrode `[hidden]`; added section prompt, product-name labels, progress-bar counter, and chart polish.
 - ✅ **Fix results layout** (`revamp/fix-results-layout`) — `#products` was not hidden when results rendered so cards lingered above the chart; added `productContainer.hidden = true` to `handleShowResults()`; converted `#chart-container` to a flex column with an absolutely positioned `.chart-wrap` so the Chart.js canvas fills the full available viewport height.
+- ✅ **Layout reorganisation** (`revamp/layout-reorganise`) — moved `#vote-ui` above `#products` and merged the section prompt into it as a horizontal control bar (prompt left, counter right, progress bar full-width below); removed the orphaned centered counter at the bottom; updated mobile responsive rules so the row stacks cleanly on narrow screens.
 
 ---
 
