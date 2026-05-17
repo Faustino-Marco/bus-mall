@@ -5,34 +5,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="BusMall — vote on quirky bus-ride products and see what fellow passengers prefer.">
   <title>Bus Mall</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/reset.css">
   <link rel="stylesheet" href="styles/style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>Bus Mall</h1>
-    <p>Which product would you buy on your commute?</p>
+    <div class="header-inner">
+      <h1>Bus Mall</h1>
+      <p class="tagline">The SkyMall of the daily commute</p>
+    </div>
   </header>
+
   <main>
     <section id="products">
       <ul>
-        <li><button class="product-btn"><img id="imgOne" src="" alt=""></button></li>
-        <li><button class="product-btn"><img id="imgTwo" src="" alt=""></button></li>
-        <li><button class="product-btn"><img id="imgThree" src="" alt=""></button></li>
+        <li>
+          <button class="product-btn">
+            <img id="imgOne" src="" alt="">
+            <span class="product-name" id="nameOne"></span>
+          </button>
+        </li>
+        <li>
+          <button class="product-btn">
+            <img id="imgTwo" src="" alt="">
+            <span class="product-name" id="nameTwo"></span>
+          </button>
+        </li>
+        <li>
+          <button class="product-btn">
+            <img id="imgThree" src="" alt="">
+            <span class="product-name" id="nameThree"></span>
+          </button>
+        </li>
       </ul>
     </section>
 
-    <p id="instructions">Click your favorite to vote &mdash; <span id="votes-remaining">25</span> votes remaining.</p>
+    <div id="vote-ui">
+      <p id="instructions">Tap your favorite — the one you'd actually buy on your commute.</p>
+      <div id="vote-counter">
+        <span id="votes-remaining">25</span>
+        <span class="vote-label">votes left</span>
+      </div>
+      <div id="progress-track"
+           role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="25"
+           aria-label="Voting progress">
+        <div id="progress-fill"></div>
+      </div>
+    </div>
 
     <div id="chart-container" hidden>
-      <h2>Results: Votes &amp; Views</h2>
+      <div class="chart-header">
+        <h2>Results</h2>
+        <p class="chart-subtitle">Votes &amp; views across all products</p>
+      </div>
       <canvas id="myChart"
         aria-label="Bar chart showing votes and views per product" role="img"></canvas>
     </div>
   </main>
+
   <footer>
-    <p>&copy; 2024 Bus Mall</p>
+    <p>&copy; 2024 Bus Mall &mdash; A grounded version of SkyMall</p>
   </footer>
 
   <script src="js/bus-mall.js" defer></script>
