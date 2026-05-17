@@ -189,6 +189,7 @@ function handleClick(event) {
 
 function handleShowResults() {
   productContainer.removeEventListener('click', handleClick);
+  productContainer.hidden = true;
   voteUI.hidden = true;
   chartContainer.hidden = false;
   renderChart();
