@@ -1,6 +1,9 @@
 'use strict';
 
+const MAX_CLICKS = 25;
+
 let allProductsArr = [];
+let votesCast = 0;
 
 let productContainer = document.getElementById('products');
 let imageEls = [
@@ -8,14 +11,23 @@ let imageEls = [
   document.getElementById('imgTwo'),
   document.getElementById('imgThree'),
 ];
-let instructions = document.getElementById('instructions');
-let votesRemaining = document.getElementById('votes-remaining');
+let nameEls = [
+  document.getElementById('nameOne'),
+  document.getElementById('nameTwo'),
+  document.getElementById('nameThree'),
+];
+let voteUI       = document.getElementById('vote-ui');
+let votesRemainingEl = document.getElementById('votes-remaining');
+let progressFill = document.getElementById('progress-fill');
+let progressTrack = document.getElementById('progress-track');
 let chartContainer = document.getElementById('chart-container');
 
 let ctx = document.getElementById('myChart').getContext('2d');
 
-let maxClicksAllowed = 25;
 let uniqueImageCount = 6;
+
+// ── PRODUCT CLASS ───────────────────────────────
+
 class Product {
   constructor(name, fileExtension = 'jpg') {
     this.name = name;
@@ -25,6 +37,8 @@ class Product {
     allProductsArr.push(this);
   }
 }
+
+// ── INITIALISE FROM STORAGE ─────────────────────
 
 let retrievedProducts = localStorage.getItem('products');
 
@@ -51,41 +65,54 @@ if (retrievedProducts) {
   new Product('wine-glass');
 }
 
-//****************************************
-//            HELPER FUNCTIONS
-//****************************************
+// ── HELPERS ─────────────────────────────────────
 
-// RANDOM # GENERATOR
 function randNum() {
   return Math.floor(Math.random() * allProductsArr.length);
 }
 
-// IMAGE RENDERING ALGORITHM
+function formatName(name) {
+  return name.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
+}
+
+function saveProducts() {
+  localStorage.setItem('products', JSON.stringify(allProductsArr));
+}
+
+function updateProgress() {
+  let pct = (votesCast / MAX_CLICKS) * 100;
+  progressFill.style.width = pct + '%';
+  progressTrack.setAttribute('aria-valuenow', votesCast);
+
+  votesRemainingEl.textContent = MAX_CLICKS - votesCast;
+  votesRemainingEl.className =
+    votesCast >= MAX_CLICKS - 3 ? 'final' :
+    votesCast >= MAX_CLICKS / 2 ? 'low' : '';
+}
+
+// ── RENDERING ───────────────────────────────────
 
 let indexArr = [];
-
 
 function renderProducts() {
   while (indexArr.length < uniqueImageCount) {
     let randoNum = randNum();
-    if (!indexArr.includes(randoNum)) {
-      indexArr.push(randoNum);
-    }
+    if (!indexArr.includes(randoNum)) indexArr.push(randoNum);
   }
 
-  imageEls.forEach(function(imgEl) {
+  imageEls.forEach(function(imgEl, i) {
     let idx = indexArr.shift();
-    imgEl.src = allProductsArr[idx].photo;
-    imgEl.alt = allProductsArr[idx].name;
-    allProductsArr[idx].views++;
+    let product = allProductsArr[idx];
+    imgEl.src = product.photo;
+    imgEl.alt = product.name;
+    nameEls[i].textContent = formatName(product.name);
+    product.views++;
   });
 }
 
 renderProducts();
 
-// *********************************************
-//              CHART RENDERING
-// *********************************************
+// ── CHART ───────────────────────────────────────
 
 function makeChartColors(count, alpha) {
   let colors = [];
@@ -97,80 +124,77 @@ function makeChartColors(count, alpha) {
 }
 
 function renderChart() {
-  let productName = allProductsArr.map(p => p.name);
-  let productVotes = allProductsArr.map(p => p.votes);
-  let productViews = allProductsArr.map(p => p.views);
   let count = allProductsArr.length;
-
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: productName,
+      labels: allProductsArr.map(p => formatName(p.name)),
       datasets: [{
-        label: '# of Votes',
-        data: productVotes,
-        backgroundColor: makeChartColors(count, 0.7),
+        label: 'Votes',
+        data: allProductsArr.map(p => p.votes),
+        backgroundColor: makeChartColors(count, 0.75),
         borderColor: makeChartColors(count, 1),
-        borderWidth: 1
+        borderWidth: 1,
+        borderRadius: 4,
       }, {
-        label: '# of Views',
-        data: productViews,
-        backgroundColor: makeChartColors(count, 0.3),
-        borderColor: makeChartColors(count, 0.8),
-        borderWidth: 1
+        label: 'Views',
+        data: allProductsArr.map(p => p.views),
+        backgroundColor: makeChartColors(count, 0.25),
+        borderColor: makeChartColors(count, 0.7),
+        borderWidth: 1,
+        borderRadius: 4,
       }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          labels: { font: { family: 'Poppins', size: 12 } }
+        }
+      },
+      scales: {
+        x: { ticks: { font: { family: 'Poppins', size: 11 } } },
+        y: { ticks: { font: { family: 'Poppins', size: 11 } } }
+      }
     },
   });
 }
 
-
-//********************************************
-//            EVENT HANDLERS
-//******************************************** */
-
-function saveProducts() {
-  localStorage.setItem('products', JSON.stringify(allProductsArr));
-}
+// ── EVENT HANDLERS ──────────────────────────────
 
 function handleClick(event) {
   let btn = event.target.closest('.product-btn');
   if (!btn) return;
 
-  maxClicksAllowed--;
-  votesRemaining.textContent = maxClicksAllowed;
+  votesCast++;
+  updateProgress();
 
   let imgClicked = btn.querySelector('img').alt;
-
   for (let i = 0; i < allProductsArr.length; i++) {
     if (imgClicked === allProductsArr[i].name) {
       allProductsArr[i].votes++;
       allProductsArr[i].views++;
     }
   }
-  saveProducts();
-  renderProducts();
 
-  if (maxClicksAllowed === 0) {
+  saveProducts();
+
+  if (votesCast === MAX_CLICKS) {
     handleShowResults();
+  } else {
+    renderProducts();
   }
 }
 
 function handleShowResults() {
   productContainer.removeEventListener('click', handleClick);
-  instructions.hidden = true;
+  voteUI.hidden = true;
   chartContainer.hidden = false;
   renderChart();
 }
 
-//****************************************
-//            EVENT LISTENERS
-//**************************************** 
+// ── INIT ─────────────────────────────────────────
 
 productContainer.addEventListener('click', handleClick);
-
 saveProducts();
-
