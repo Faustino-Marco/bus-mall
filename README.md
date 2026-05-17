@@ -35,10 +35,15 @@
 - ✅ **Convert `Product` constructor to ES6 `class`** (`revamp/deep-15-es6-class`) — modernized from `function Product()` prototype pattern to `class Product { constructor() {} }`; also cleaned up the instantiation section comments and inlined the `JSON.parse` call.
 - ✅ **Keyboard accessibility for voting** (`revamp/deep-16-keyboard-a11y`) — wrapped each product `<img>` in a `<button class="product-btn">`; button gets a yellow focus ring on `:focus-visible`; `handleClick` uses `event.target.closest('.product-btn')` so Enter/Space keyboard activation works correctly.
 
+### Visual Overhaul
+
+- ✅ **Viewport-filling product cards** (`revamp/voting-ui-fix`) — replaced fixed-size image containers with a flex-fill chain (`body → main → #products → ul → li → .product-btn → img`) so cards grow to use all available vertical space; fixed `[hidden]` specificity bug where `#vote-ui { display: flex }` overrode `[hidden]`; added section prompt, product-name labels, progress-bar counter, and chart polish.
+
 ---
 
 ## Version History
 
+- Version 3.1.0: Viewport-filling product cards — flex-fill chain makes cards use all available height; fixed hidden attribute specificity bug; added product name labels and progress-bar vote counter (5/17/26)
 - Version 3.0.0: Modern visual overhaul — Poppins font, gradient header, product-name cards, progress-bar vote counter, formatted chart labels (5/17/26)
 - Version 2.1.0: Visual redesign — product cards, responsive chart container, header tagline, full-width layout fix (5/17/26)
 - Version 2.0.0: Full revamp — 16 improvements across HTML, CSS, and JS including bug fixes, accessibility, and modernisation (5/17/26)
