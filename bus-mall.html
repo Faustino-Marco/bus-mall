@@ -21,8 +21,22 @@
   </header>
 
   <main>
+    <div id="vote-ui">
+      <div class="vote-ui-row">
+        <p class="section-prompt">Which would you actually buy on your commute?</p>
+        <div id="vote-counter">
+          <span id="votes-remaining">25</span>
+          <span class="vote-label">votes left</span>
+        </div>
+      </div>
+      <div id="progress-track"
+           role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="25"
+           aria-label="Voting progress">
+        <div id="progress-fill"></div>
+      </div>
+    </div>
+
     <section id="products">
-      <p class="section-prompt">Which would you actually buy on your commute?</p>
       <ul>
         <li>
           <button class="product-btn">
@@ -44,18 +58,6 @@
         </li>
       </ul>
     </section>
-
-    <div id="vote-ui">
-      <div id="vote-counter">
-        <span id="votes-remaining">25</span>
-        <span class="vote-label">votes left</span>
-      </div>
-      <div id="progress-track"
-           role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="25"
-           aria-label="Voting progress">
-        <div id="progress-fill"></div>
-      </div>
-    </div>
 
     <div id="chart-container" hidden>
       <div class="chart-header">
