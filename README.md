@@ -45,6 +45,7 @@
 
 ## Version History
 
+- Version 3.2.0: Layout reorganisation — control bar groups instruction + vote counter + progress bar at top; cards fill remaining viewport; bug fixes: products now hide on results, chart fills full height (5/17/26)
 - Version 3.1.0: Viewport-filling product cards — flex-fill chain makes cards use all available height; fixed hidden attribute specificity bug; added product name labels and progress-bar vote counter (5/17/26)
 - Version 3.0.0: Modern visual overhaul — Poppins font, gradient header, product-name cards, progress-bar vote counter, formatted chart labels (5/17/26)
 - Version 2.1.0: Visual redesign — product cards, responsive chart container, header tagline, full-width layout fix (5/17/26)
